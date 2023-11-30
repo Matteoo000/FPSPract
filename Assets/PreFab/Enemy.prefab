@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4584631303973874308}
   - component: {fileID: 3845484551790108279}
   - component: {fileID: 1901623130881674859}
+  - component: {fileID: 8789366114754322654}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: NPC
@@ -124,14 +125,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 3845484551790108279}
   squareOffMovement: 20
-  xmin: -20
-  xmax: 20
-  zmin: -20
-  zmax: 20
-  xPosition: 0
-  zPosition: 0
-  yPosition: 0
   closeEnough: 3
+  health: 10
+  akDamage: 22
 --- !u!195 &3845484551790108279
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -170,3 +166,30 @@ MonoBehaviour:
   ren: {fileID: 431438262200146174}
   defaultMaterial: {fileID: 2100000, guid: b76381a870ede1f4dbdc63a2c29c365d, type: 2}
   allertMaterial: {fileID: 2100000, guid: bcdb245f399fa4643b0a4dca7d0cef25, type: 2}
+--- !u!54 &8789366114754322654
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3305144984214786630}
+  serializedVersion: 4
+  m_Mass: 15
+  m_Drag: 4
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

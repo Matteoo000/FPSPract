@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,8 @@ public class Enemy : MonoBehaviour
     private float yPosition;
 
     public float closeEnough = 3f;
+    public int health = 10;
+    public float akDamage = 22f;
     void Start()
     {
         xmin = zmin = -squareOffMovement;
@@ -30,6 +33,11 @@ public class Enemy : MonoBehaviour
         if (Vector3.Distance(transform.position, new Vector3(xPosition, yPosition, zPosition)) <= closeEnough)
         {
             newLocation();
+
+        }
+        if (health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -39,7 +47,9 @@ public class Enemy : MonoBehaviour
         yPosition = transform.position.y;
         xPosition = Random.Range(xmin, xmax);
         zPosition = Random.Range(zmin, zmax);
-        Debug.Log(yPosition + " --- " + xPosition + " --- " + zPosition);
+        //Debug.Log(yPosition + " --- " + xPosition + " --- " + zPosition);
         agent.SetDestination(new Vector3(xPosition, yPosition, zPosition));
+       
     }
+   
 }
