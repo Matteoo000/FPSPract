@@ -126,7 +126,7 @@ MonoBehaviour:
   agent: {fileID: 3845484551790108279}
   squareOffMovement: 20
   closeEnough: 3
-  health: 10
+  health: 100
   akDamage: 22
 --- !u!195 &3845484551790108279
 NavMeshAgent:
