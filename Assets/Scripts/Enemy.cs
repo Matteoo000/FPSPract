@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     private float yPosition;
 
     public float closeEnough = 3f;
-    public int health = 10;
+    public int health = 100;
     public float akDamage = 22f;
     void Start()
     {
