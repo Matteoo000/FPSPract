@@ -31,9 +31,9 @@ public class PlayerShoot : MonoBehaviour
 
         if (rayHit.collider.tag.Equals("NPC"))
         {
-                    Debug.Log(enemyScript.health);
-                    enemyScript.health--;
-                    if (enemyScript.health < 0)
+                    Debug.Log(enemyScript.Health);
+                    enemyScript.Health--;
+                    if (enemyScript.Health < 0)
                     {
                         Destroy(rayHit.collider.gameObject);
 

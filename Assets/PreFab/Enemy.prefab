@@ -123,11 +123,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e1acfca0712d648879ed94f63a2720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 3845484551790108279}
-  squareOffMovement: 20
-  closeEnough: 3
-  health: 100
-  akDamage: 22
+  EnemyAgent: {fileID: 3845484551790108279}
+  damageAmount: 50
+  Health: 100
+  xMin: 0
+  xMax: 60
+  zMin: 0
+  zMax: 60
 --- !u!195 &3845484551790108279
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -142,7 +144,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2
+  m_StoppingDistance: 0.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -162,10 +164,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de69d54b46f8bb408f7a1d67703d255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atackRange: 5
-  ren: {fileID: 431438262200146174}
+  attackRange: 3
+  damageAmount: 50
+  attackCooldown: 2
   defaultMaterial: {fileID: 2100000, guid: b76381a870ede1f4dbdc63a2c29c365d, type: 2}
-  allertMaterial: {fileID: 2100000, guid: bcdb245f399fa4643b0a4dca7d0cef25, type: 2}
+  alertMaterial: {fileID: 2100000, guid: bcdb245f399fa4643b0a4dca7d0cef25, type: 2}
+  rend: {fileID: 431438262200146174}
 --- !u!54 &8789366114754322654
 Rigidbody:
   m_ObjectHideFlags: 0

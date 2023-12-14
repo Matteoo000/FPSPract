@@ -1,54 +1,91 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class EnemyAtack : MonoBehaviour
+public class EnemyAttack : MonoBehaviour
 {
+    private Enemy enemyMovement;
     private Transform player;
-    public float atackRange = 5f;
-    private Enemy EnemyScript;
-
-    public Renderer ren;
+    public float attackRange = 3f; // Adjust this value to your desired attack range
+    public int damageAmount = 10;
+    public float attackCooldown = 2f; // Time between attacks
+    private float nextAttackTime;
     public Material defaultMaterial;
-    public Material allertMaterial;
-
-    private bool foundPlayer;
-
+    public Material alertMaterial;
+    public Renderer rend;
+    private bool foundPlayer = false; // Initialize to false
 
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        EnemyScript = GetComponent<Enemy>();
-        ren = GetComponent<Renderer>();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        enemyMovement = GetComponent<Enemy>();
+        rend = GetComponent<Renderer>();
+        foundPlayer = false; // Make sure it's initialized to false
+        nextAttackTime = 0f; // Initialize nextAttackTime
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Vector3.Distance(transform.position,player.position ) <= atackRange)
+        //Debug.Log("Distance to player: " + Vector3.Distance(transform.position, player.position));
+
+        if (foundPlayer)
         {
-           ren.sharedMaterial = allertMaterial; // change material
-            EnemyScript.agent.SetDestination(player.position); // set destination to player pos
-            foundPlayer = true; //enable bool for chasing
+            if (CanAttack())
+            {
+                AttackPlayer();
+            }
+            else
+            {
+                // Player is not in attack range, continue chasing
+                rend.material = alertMaterial;
+                enemyMovement.EnemyAgent.SetDestination(player.position);
+            }
         }
-        else if(foundPlayer)
+        else
         {
-            ren.sharedMaterial = defaultMaterial; // set material back to default
-            EnemyScript.newLocation(); // call enemy script
-            foundPlayer = false; 
+            // Player not found, check for player within attack range to start chasing
+            if (Vector3.Distance(transform.position, player.position) <= attackRange)
+            {
+                foundPlayer = true;
+                rend.material = alertMaterial;
+                enemyMovement.EnemyAgent.SetDestination(player.position);
+            }
+            else
+            {
+                // Player is not in attack range, revert to default material and search
+                rend.material = defaultMaterial;
+                enemyMovement.newLocation();
+            }
         }
-        
-           
-        
-     
-}
-   
+    }
+
+    private bool CanAttack()
+    {
+        return Time.time >= nextAttackTime;
+    }
+
+    private void AttackPlayer()
+    {
+        // Deal damage to the player (you can replace this with your own damage logic)
+        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(damageAmount);
+        }
+
+        // Set the next attack time based on the cooldown
+        nextAttackTime = Time.time + attackCooldown;
+
+        // Additional logic for attacking, if needed
+    }
+
+    private void FixedUpdate()
+    {
+        if (foundPlayer && Vector3.Distance(transform.position, player.position) > attackRange)
+        {
+            // Player is out of attack range, revert to default material and search
+            rend.material = defaultMaterial;
+            enemyMovement.newLocation();
+            foundPlayer = false;
+        }
+    }
 }
