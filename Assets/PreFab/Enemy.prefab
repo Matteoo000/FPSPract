@@ -126,9 +126,9 @@ MonoBehaviour:
   EnemyAgent: {fileID: 3845484551790108279}
   damageAmount: 50
   Health: 100
-  xMin: 0
+  xMin: 34
   xMax: 60
-  zMin: 0
+  zMin: 25
   zMax: 60
 --- !u!195 &3845484551790108279
 NavMeshAgent:
