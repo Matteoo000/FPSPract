@@ -127,9 +127,9 @@ MonoBehaviour:
   damageAmount: 30
   Health: 100
   xMin: 0
-  xMax: 60
-  zMin: 0
-  zMax: 60
+  xMax: 30
+  zMin: -10
+  zMax: 30
 --- !u!195 &3845484551790108279
 NavMeshAgent:
   m_ObjectHideFlags: 0
