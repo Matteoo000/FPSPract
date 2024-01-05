@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
+    private FlashLight flashlight;
     private Enemy enemyMovement;
     private Transform player;
     public float attackRange = 3f; // Adjust this value to your desired attack range
@@ -26,7 +27,7 @@ public class EnemyAttack : MonoBehaviour
     private void Update()
     {
         //Debug.Log("Distance to player: " + Vector3.Distance(transform.position, player.position));
-
+        
         if (foundPlayer)
         {
             if (CanAttack())
